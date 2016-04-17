@@ -25,7 +25,7 @@ We will use Protractor as our test *runner*. Protractor uses Jasmine as it's tes
 ## Setting up
 ### File structure and installing tools
 1. Fork and clone this repo.
-1. bash npm i
+1. > npm i
 1. First, we will get our file structure setup for testing.
   1. In the root directory of the project, make a "test" directory.
   1. Inside of "test", make a "e2e" directory.
