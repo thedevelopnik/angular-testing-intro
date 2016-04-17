@@ -41,17 +41,17 @@ We will use Protractor as our test *runner*. Protractor uses Jasmine as it's tes
 
 ### Configuring tools
 We need to configure karma and protractor. First we will configure karma.
-1. Navigate to the root directory of the project.
-1. ```shell karma init ```
-  * Creates karma config file based on entered options.
-1. First it asks what framework we want. Use tab to navigate to "mocha" and hit enter.
-1. We do not want Require.js. Hit enter on the default of "no."
-1. We do want to capture Chrome automatically, so hit enter on the default of "Chrome." Hit enter again on an empty entry to continue.
-1. The location of our source files is our component folders. So we will enter "src/js/\*\*/\*.spec.js"
-1. This will capture all the files we want; we do not need to exclude any, so we will leave this question empty. Hit enter.
-1. Live checking on save? Yes please! Hit enter.
-1. Congragulations! You have a karma config file! Now when we run ```bash karma start ``` it will run tests in the files labeled \*.spec.js in subdirectories of our js folder, using Mocha/Chai.
-1. Last step, we're almost there! In the root directory of the project, create a file called "protractor.conf.js". Paste this code into it:
+  1. Navigate to the root directory of the project.
+  1. > karma init - 
+    * Creates karma config file based on entered options.
+  1. First it asks what framework we want. Use tab to navigate to "mocha" and hit enter.
+  1. We do not want Require.js. Hit enter on the default of "no."
+  1. We do want to capture Chrome automatically, so hit enter on the default of "Chrome." Hit enter again on an empty entry to continue.
+  1. The location of our source files is our component folders. So we will enter "src/js/\*\*/\*.spec.js"
+  1. This will capture all the files we want; we do not need to exclude any, so we will leave this question empty. Hit enter.
+  1. Live checking on save? Yes please! Hit enter.
+  1. Congragulations! You have a karma config file! Now when we run "karma start" it will run tests in the files labeled \*.spec.js in subdirectories of our js folder, using Mocha/Chai.
+  1. Last step, we're almost there! In the root directory of the project, create a file called "protractor.conf.js". Paste this code into it:
 ```javascript
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
