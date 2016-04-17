@@ -27,8 +27,8 @@ We will use Protractor as our test *runner*. Protractor uses Jasmine as it's tes
 1. Fork and clone this repo.
 1. First, we will get our file structure setup for testing.
   1. In the root directory of the project, make a "test" directory.
-  1. Inside of "test", make a "e2e" directory and a "unit" directory.
-  1. Side note, this is not the most popular practice for setting up unit tests in Angular. Many people make an e2e directory here, but place their unit tests in the same client-side directories as the components they are testing. However, for simplicity's sake in learning the basics of Angular testing, we will keep all our tests in the same place.
+  1. Inside of "test", make a "e2e" directory.
+  1. As we go through the process of building our angular app, we will be placing our unit testing files in the client-side directories of their related component. This is widely-accepted best practice when building an Angular app using the component model.
 1. Next we need to install Karma and Protractor.
   1. > npm i -g karma-cli
     * This installs a karma command line tool that we will use to do some setup and run tests
