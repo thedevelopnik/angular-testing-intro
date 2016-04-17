@@ -1,6 +1,15 @@
 # angular-testing-intro
 A tutorial on using unit and e2e testing to facilitate test-driven development Angular.js 1.4.x
 
+## Standards
+* Write unit tests in a TDD style using Mocha Chai.
+* Gather and validate requirements from a user and test that user’s response to a minimum testable artifact.
+* Design and execute user tests, then implement changes based on feedback.
+
+
+## Objective
+Coders will be able to implement unit and e2e testing of Angular components in a basic Angular app that consumes an API and displays its data in multiple ways.
+
 ## Two kinds of testing
 
 ### Unit
@@ -21,7 +30,7 @@ We will use Protractor as our test *runner*. Protractor uses Jasmine as it's tes
   1. Inside of "test", make a "e2e" directory and a "unit" directory.
   1. Side note, this is not the most popular practice for setting up unit tests in Angular. Many people make an e2e directory here, but place their unit tests in the same client-side directories as the components they are testing. However, for simplicity's sake in learning the basics of Angular testing, we will keep all our tests in the same place.
 1. Next we need to install Karma and Protractor.
-  1. > npm i -g karma-cli 
+  1. > npm i -g karma-cli
     * This installs a karma command line tool that we will use to do some setup and run tests
   1. > npm i --save-dev karma karma-mocha karma-chai karma-chrome-launcher
     * Here we install the test runner and libraries, along with a tool that will allow karma to use Chrome to run actions
