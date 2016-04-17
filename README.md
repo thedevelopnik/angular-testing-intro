@@ -14,3 +14,16 @@ e2e stands for End-to-End testing. e2e is powerful because you can mimic user be
 We will use Protractor as our test *runner*. Protractor uses Jasmine as it's test *library*.
 
 ## Setting up
+### File structure and installing tools
+1. Fork and clone this repo.
+1. First, we will get our file structure setup for testing.
+  1. In the root directory of the project, make a "test" directory.
+  1. Inside of "test", make a "e2e" directory and a "unit" directory.
+  1. Side note, this is not the most popular practice for setting up unit tests in Angular. Many people make an e2e directory here, but place their unit tests in the same client-side directories as the components they are testing. However, for simplicity's sake in learning the basics of Angular testing, we will keep all our tests in the same place.
+1. Next we need to install Karma and Protractor.
+  1. > npm i -g karma-cli 
+    * This installs a karma command line tool that we will use to do some setup and run tests
+  1. > npm i --save-dev karma karma-mocha karma-chai karma-chrome-launcher
+    * Here we install the test runner and libraries, along with a tool that will allow karma to use Chrome to run actions
+  1. npm i --save-dev protractor
+    * Installs protractor
