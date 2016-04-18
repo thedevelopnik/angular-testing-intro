@@ -33,11 +33,11 @@ We will use protractor as our test *runner*. We can also use Mocha and Chai with
 1. Next we need to install Karma and Protractor.
   1. > npm i -g karma-cli
     * This installs a karma command line tool that we will use to do some setup and run tests
-  1. > bash npm i --save-dev karma karma-mocha karma-chai karma-chrome-launcher
+  1. > npm i --save-dev karma karma-mocha karma-chai karma-chrome-launcher
     * Here we install the test runner and libraries, along with a tool that will allow karma to use Chrome to run actions
-  1. > shell npm i --save-dev protractor chai-as-promised
+  1. > npm i --save-dev protractor chai-as-promised
     * Installs protractor and the library we need to use chai with protractor.
-  1. Finally, type > webdriver-manager update. This will get us ready to use Protractor with a mock server.
+  1. Finally, type > npm i -g webdriver-manager. This will get us ready to use Protractor with a mock server.
 
 ### Configuring tools
 We need to configure karma and protractor. First we will configure karma.
@@ -121,7 +121,7 @@ it('initially has a status of true for hidden items', inject(function ($controll
   });
 ```
 
-In the protractor.conf.js file, we need to setup Chai, which looks like this:
+In the protractor test files, we need to setup Chai, which looks like this:
 ```javascript
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
