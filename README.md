@@ -20,7 +20,7 @@ We will be doing unit testing using the karma test *runner*, the Mocha test *lib
 ### e2e
 e2e stands for End-to-End testing. e2e is powerful because you can mimic user behavior, and test the exact processes users will take on your site to make sure they have a *good user experience*. You need fewer e2e tests than unit and integration tests, because they test so many parts of your system at once. They are also time and resource intensive. Therefore, you want to pick critical processes to write e2e tests for.
 
-We will use Protractor as our test *runner*. Protractor uses Jasmine as it's test *library*.
+We will use protractor as our test *runner*. We can also use Mocha and Chai with protractor.
 
 ## Setting up
 ### File structure and installing tools
@@ -35,8 +35,8 @@ We will use Protractor as our test *runner*. Protractor uses Jasmine as it's tes
     * This installs a karma command line tool that we will use to do some setup and run tests
   1. > bash npm i --save-dev karma karma-mocha karma-chai karma-chrome-launcher
     * Here we install the test runner and libraries, along with a tool that will allow karma to use Chrome to run actions
-  1. > shell npm i --save-dev protractor
-    * Installs protractor
+  1. > shell npm i --save-dev protractor chai-as-promised
+    * Installs protractor and the library we need to use chai with protractor.
   1. Finally, type > webdriver-manager update. This will get us ready to use Protractor with a mock server.
 
 ### Configuring tools
@@ -51,14 +51,17 @@ We need to configure karma and protractor. First we will configure karma.
 1. This will capture all the files we want; we do not need to exclude any, so we will leave this question empty. Hit enter.
 1. Live checking on save? Yes please! Hit enter.
 1. Congragulations! You have a karma config file! Now when we run ```bash karma start ``` it will run tests in the files labeled \*.spec.js in subdirectories of our js folder, using Mocha/Chai.
+1. Now open your karma.conf.js file. We need to add a few things:
+  * In the "files" array, we add all the files we want karma to access to run our tests. This will include all of our angular files from our index.html, and the Angular-Mocks service: https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular-mocks.js.
 1. Last step, we're almost there! In the root directory of the project, create a file called "protractor.conf.js". Paste this code into it:
 ```javascript
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['./test/e2e/*.js']
+  specs: ['./test/e2e/*.js'],
+  framework: 'mocha',
 };
 ```
-This tells protractor where to access our mock server, and where our tests are located.
+This tells protractor where to access our mock server, where our tests are located, and to use Mocha.
 
 ## Get to coding!
 Now we can start our TDD process to build this site.
@@ -67,3 +70,69 @@ Now we can start our TDD process to build this site.
 * As a site visitor, I see the current EPL table in order of points when the page loads, so I can quickly check where teams stand in the table.
 * As a site visitor, I can sort the teams by name, so I can find team information more easily.
 * As a site visitor, I can search teams by name using a text input, and only the teams matching my search will show up, so I can quickly find my team's information.
+
+### Basic syntax
+In each of our unit test files, we need to do a few things, using the following code:
+```javascript
+describe('our first test', function () {
+  // cleans the slate of controllers and scope
+  var controller = null;
+  $scope = null;
+
+  // loads the module into the test
+  beforeEach(module('our app'));
+
+  it('initially has a status of true for hidden items', inject(function ($controller) {
+    /* the above lines injects the ability to access all registered controllers in the test.
+    The next two lines give us access to a specific controller, and a mock scope for that controller */
+    var scope = {};
+    var controller = $controller('a controller', {
+      $scope: scope
+    });
+
+    test statements go here
+
+  }));
+});
+```
+
+If my test includes an $http call, I need to inject a service from Angular-Mocks called $httpBackend, so my test will look like this:
+```javascript
+it('initially has a status of true for hidden items', inject(function ($controller, $httpBackend) {
+  /* the above lines injects the ability to access all registered controllers in the test.
+  The next two lines give us access to a specific controller, and a mock scope for that controller */
+  var scope = {};
+
+  $httpBackend.when('GET', 'a uri')
+  .respond(['whatever I want my response to include']);
+
+  var controller = $controller('a controller', {
+    $scope: scope
+  });
+```
+
+In the protractor.conf.js file, we need to setup Chai, which looks like this:
+```javascript
+var chai = require('chai');
+var chaiAsPromised = require('chai-as-promised');
+
+chai.use(chaiAsPromised);
+var should = chai.should;
+```
+
+The syntax for writing a test in protractor looks like this:
+
+```javascript
+describe('my first test', function() {
+  // we need to load a browser with the page. This means we need to be running the app via http-server/nodemon/etc. The port will be whatever port your page is served to.
+  beforeEach(function() {
+    browser.get('http://localhost:3000')
+  })
+
+  it('should perform a behavior', function() {
+
+    test behaviors go here
+
+  });
+});
+```
