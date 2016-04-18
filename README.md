@@ -25,7 +25,7 @@ We will use protractor as our test *runner*. We can also use Mocha and Chai with
 ## Setting up
 ### File structure and installing tools
 1. Fork and clone this repo.
-1. bash npm i
+1. > npm i
 1. First, we will get our file structure setup for testing.
   1. In the root directory of the project, make a "test" directory.
   1. Inside of "test", make a "e2e" directory.
@@ -41,19 +41,17 @@ We will use protractor as our test *runner*. We can also use Mocha and Chai with
 
 ### Configuring tools
 We need to configure karma and protractor. First we will configure karma.
-1. Navigate to the root directory of the project.
-1. ```shell karma init ```
-  * Creates karma config file based on entered options.
-1. First it asks what framework we want. Use tab to navigate to "mocha" and hit enter.
-1. We do not want Require.js. Hit enter on the default of "no."
-1. We do want to capture Chrome automatically, so hit enter on the default of "Chrome." Hit enter again on an empty entry to continue.
-1. The location of our source files is our component folders. So we will enter "src/js/\*\*/\*.spec.js"
-1. This will capture all the files we want; we do not need to exclude any, so we will leave this question empty. Hit enter.
-1. Live checking on save? Yes please! Hit enter.
-1. Congragulations! You have a karma config file! Now when we run ```bash karma start ``` it will run tests in the files labeled \*.spec.js in subdirectories of our js folder, using Mocha/Chai.
-1. Now open your karma.conf.js file. We need to add a few things:
-  * In the "files" array, we add all the files we want karma to access to run our tests. This will include all of our angular files from our index.html, and the Angular-Mocks service: https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular-mocks.js.
-1. Last step, we're almost there! In the root directory of the project, create a file called "protractor.conf.js". Paste this code into it:
+  1. Navigate to the root directory of the project.
+  1. > karma init -
+    * Creates karma config file based on entered options.
+  1. First it asks what framework we want. Use tab to navigate to "mocha" and hit enter.
+  1. We do not want Require.js. Hit enter on the default of "no."
+  1. We do want to capture Chrome automatically, so hit enter on the default of "Chrome." Hit enter again on an empty entry to continue.
+  1. The location of our source files is our component folders. So we will enter "src/js/\*\*/\*.spec.js"
+  1. This will capture all the files we want; we do not need to exclude any, so we will leave this question empty. Hit enter.
+  1. Live checking on save? Yes please! Hit enter.
+  1. Congragulations! You have a karma config file! Now when we run "karma start" it will run tests in the files labeled \*.spec.js in subdirectories of our js folder, using Mocha/Chai.
+  1. Last step, we're almost there! In the root directory of the project, create a file called "protractor.conf.js". Paste this code into it:
 ```javascript
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
