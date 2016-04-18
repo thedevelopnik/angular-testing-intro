@@ -79,6 +79,7 @@ Now we can start our TDD process to build this site.
 * As a site visitor, I see the current EPL table in order of points when the page loads, so I can quickly check where teams stand in the table.
 * As a site visitor, I can sort the teams by name, so I can find team information more easily.
 * As a site visitor, I can search teams by name using a text input, and only the teams matching my search will show up, so I can quickly find my team's information.
+* Documentation for the API we'll be hitting [is here](http://www.football-data.org/documentation).
 
 ### Basic syntax
 In each of our unit test files, we need to do a few things, using the following code:
